@@ -1,0 +1,14 @@
+FROM    registry.access.redhat.com/rhel7/rhel
+LABEL   base.name="RHEL 7.3 with Java/Tomcat" \
+        base.version="${VERSION}"
+MAINTAINER Angelo Gabrieli sistemi@giocodigitale.sps
+RUN     groupadd -g 1000 javawww && \
+        useradd -s /bin/false -d /home/javawww -g javawww -u 1000 javawww
+EXPOSE  8080
+USER    javawww:javawww
+ENV     TZ="Europe/Rome" \
+        HOME="/home/javawww" \
+        JAVA_HOME="/home/javawww/jdk18" \
+        PATH="$PATH:$JAVA_HOME/bin:$HOME/bin"
+WORKDIR $HOME
+ENTRYPOINT ["/home/javawww/tomcat/bin/catalina.sh","run"]
