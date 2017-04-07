@@ -1,7 +1,6 @@
 FROM    registry.access.redhat.com/rhel7/rhel
 LABEL   base.name="RHEL 7 with ActiveMQ5/Java8" \
         base.version="${VERSION}"
-MAINTAINER Angelo Gabrieli sistemi@giocodigitale.sps
 ADD     ["jdk-8u121-linux-x64.tar.gz", "/home/javawww/"]
 ADD     ["apache-activemq-5.14.4-bin.tar.gz", "/home/javawww/"]
 RUN     groupadd -g 1000 javawww && \
