@@ -20,5 +20,4 @@ ENV     TZ="Europe/Rome" \
         JAVA_HOME="/home/javawww/jdk18" \
         PATH="$PATH:$JAVA_HOME/bin:$HOME/bin"
 WORKDIR $HOME
-#ENTRYPOINT ["/home/javawww/apacheMQ/bin/activemq","start"]
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/home/javawww/apacheMQ/bin/activemq","start"]
