@@ -1,9 +1,11 @@
-activeMQ:
-build: ./rhel_activemq5_java8.df
-ports:
-  - "8161:8161"
+version: '2'
+services:
+  activeMQ:
+    build: ./rhel_activemq5_java8.df
+    ports:
+       - "8161:8161"
 
-activeMQ2:
-build: ./rhel_activemq5_java8.df
-ports:
-  - "8162:8161"
+  activeMQ2:
+    build: ./rhel_activemq5_java8.df
+    ports:
+       - "8162:8161"
