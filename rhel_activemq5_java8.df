@@ -1,8 +1,8 @@
 FROM    registry.access.redhat.com/rhel7/rhel
 LABEL   base.name="RHEL 7 with ActiveMQ5/Java8" \
         base.version="${VERSION}"
-ADD     ["http://javadl.oracle.com/webapps/download/AutoDL?BundleId=218823_e9e7ea248e2c4826b92b3f075a80e441", "/home/javawww/"]
-ADD     ["http://www.apache.org/dyn/closer.cgi?filename=/activemq/5.14.4/apache-activemq-5.14.4-bin.tar.gz&action=download", "/home/javawww/"]
+ADD     ["http://10.20.12.218/jdk-8u121-linux-x64.tar.gz", "/home/javawww/"]
+ADD     ["http://10.20.12.218/apache-activemq-5.14.4-bin.tar.gz", "/home/javawww/"]
 RUN     groupadd -g 1000 javawww && \
         useradd -s /bin/false -d /home/javawww -g javawww -u 1000 javawww && \ 
         ln -s jdk1.8.0_121/ /home/javawww/jdk18 && \
