@@ -5,11 +5,11 @@ ADD     ["http://10.20.12.218/jdk-8u121-linux-x64.tar.gz", "/home/javawww/"]
 ADD     ["http://10.20.12.218/apache-activemq-5.14.4-bin.tar.gz", "/home/javawww/"]
 RUN     groupadd -g 1000 javawww && \
         useradd -s /bin/false -d /home/javawww -g javawww -u 1000 javawww && \ 
+        tar -C /home/javawww xf /home/javawww/apache-activemq-5.14.4-bin.tar.gz && \
+        tar -C /home/javawww xf /home/javawww/jdk-8u121-linux-x64.tar.gz && \
         ln -s jdk1.8.0_121/ /home/javawww/jdk18 && \
         ln -s apache-activemq-5.14.4/ /home/javawww/activeMQ && \
         chown -R javawww:javawww /home/javawww && \
-        tar xf /home/javawww/apache-activemq-5.14.4-bin.tar.gz && \
-        tar xf /home/javawww/jdk-8u121-linux-x64.tar.gz && \
         rm -f /home/javawww/apache-activemq-5.14.4-bin.tar.gz && \
         rm -f /home/javawww/jdk-8u121-linux-x64.tar.gz
 EXPOSE 8161
