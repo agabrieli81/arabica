@@ -1,13 +1,17 @@
 FROM    registry.access.redhat.com/rhel7/rhel
 LABEL   base.name="RHEL 7 with ActiveMQ5/Java8" \
         base.version="${VERSION}"
-ADD     ["jdk-8u121-linux-x64.tar.gz", "/home/javawww/"]
-ADD     ["apache-activemq-5.14.4-bin.tar.gz", "/home/javawww/"]
+ADD     ["http://javadl.oracle.com/webapps/download/AutoDL?BundleId=218823_e9e7ea248e2c4826b92b3f075a80e441", "/home/javawww/"]
+ADD     ["http://www.apache.org/dyn/closer.cgi?filename=/activemq/5.14.4/apache-activemq-5.14.4-bin.tar.gz&action=download", "/home/javawww/"]
 RUN     groupadd -g 1000 javawww && \
         useradd -s /bin/false -d /home/javawww -g javawww -u 1000 javawww && \ 
         ln -s jdk1.8.0_121/ /home/javawww/jdk18 && \
         ln -s apache-activemq-5.14.4/ /home/javawww/activeMQ && \
-        chown -R javawww:javawww /home/javawww
+        chown -R javawww:javawww /home/javawww && \
+        tar xf /home/javawww/apache-activemq-5.14.4-bin.tar.gz && \
+        tar xf /home/javawww/jdk-8u121-linux-x64.tar.gz && \
+        rm -f /home/javawww/apache-activemq-5.14.4-bin.tar.gz && \
+        rm -f /home/javawww/jdk-8u121-linux-x64.tar.gz
 EXPOSE 8161
 EXPOSE 61616
 EXPOSE 5672
@@ -20,4 +24,5 @@ ENV     TZ="Europe/Rome" \
         JAVA_HOME="/home/javawww/jdk18" \
         PATH="$PATH:$JAVA_HOME/bin:$HOME/bin"
 WORKDIR $HOME
-ENTRYPOINT ["/home/javawww/apacheMQ/bin/activemq","start"]
+#ENTRYPOINT ["/home/javawww/apacheMQ/bin/activemq","start"]
+ENTRYPOINT ["/bin/bash"]
