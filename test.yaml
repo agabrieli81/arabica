@@ -1,0 +1,12 @@
+kind: Pod
+metadata:
+  name: active
+  labels:
+   apps: web
+spec:
+  containers:
+  - name: imagename
+    image: agabrieli81/rhel_activemq5_java8:latest
+    ports:
+    - containerPort: 8161
+      hostPort: 8161
