@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ labels:
+  name: rcactive
+ name: rcactive
+spec:
+  replicas: 2
+  selector:
+   name: active
+  template:
+   metadata:
+    labels:
+     name: active
+    name: active
+   spec:
+    containers:
+    - image: agabrieli81/rhel_activemq5_java8:latest
+      name: imagename
+      ports:
+      - containerPort: 8161
+        hostPort: 8161
