@@ -1,0 +1,22 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+ name: active-pod
+ labels:
+  name: active
+  app: test
+spec:
+ containers:
+  - name: active-pod
+    image: agabrieli81/rhel_activemq5_java8:latest
+    ports:
+     - containerPort: 8161
+       name: active-pod
+       protocol: TCP
+    volumeMounts:
+     - name: active-pd
+       mountPath: "/home/javawww/activeMQ/data"
+ volumes:
+  - name: active-pd
+    persistentVolumeClaim:
+     claimName: active-pvc
