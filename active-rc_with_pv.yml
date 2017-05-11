@@ -1,0 +1,28 @@
+apiVersion: "v1"
+kind: ReplicationController
+metadata:
+ name: active-pod
+ labels:
+  name: active-pod
+  app: test
+spec:
+ replicas: 1
+ template:
+  metadata:
+   labels:
+    name: active-pod
+  spec:
+   containers:
+    - name: active-pod
+      image: agabrieli81/rhel_activemq5_java8:latest
+      ports:
+       - containerPort: 8161
+         name: active-pod
+         protocol: TCP
+      volumeMounts:
+       - name: nfs-mount
+         mountPath: "/home/javawww/activeMQ/data"
+   volumes:
+    - name: nfs-mount
+      persistentVolumeClaim:
+       claimName: active-pvc
