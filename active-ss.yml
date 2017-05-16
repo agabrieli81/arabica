@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: active
+  labels:
+    name: active
+spec:
+  serviceName: "active"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: active
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: active
+        image: agabrieli81/rhel_activemq5_java8:latest
+        ports:
+        - containerPort: 8161
+          name: active
+        volumeMounts:
+        - name: active
+          mountPath: /home/javawww/activeMQ/data
+  volumeClaimTemplates:
+  - metadata:
+      name: active
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
