@@ -1,0 +1,24 @@
+apiVersion: "v1"
+kind: Pod
+metadata:
+ name: active-pod
+ labels:
+  name: active-pod
+  app: test
+spec:
+ containers:
+  - name: active-pod-01
+    image: agabrieli81/rhel_activemq5_java8:latest
+    ports:
+     - containerPort: 8161
+       name: active-pod
+       protocol: TCP
+    volumeMounts:
+     - name: nfs-mount
+       mountPath: "/home/javawww/activeMQ/data"
+ nodeSelector:
+  node: one
+ volumes:
+  - name: nfs-mount
+    hostPath:
+     path: /data
