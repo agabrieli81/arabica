@@ -1,0 +1,16 @@
+# Endpoint for connecting external ActiveMQ clients. Delete this if not required
+apiVersion: v1
+kind: Service
+metadata:
+  name: active-client
+  labels:
+    name: active
+spec:
+  type: NodePort
+  ports:
+    - port: 8161
+      name: server
+      targetPort: 8161
+      protocol: TCP
+  selector:
+    name: active
