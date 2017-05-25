@@ -5,8 +5,8 @@ LABEL   base.name="RHEL 7.3 with Java8/Tomcat8" \
         artifact.release_date="${RELEASE_DATE}" \
         artifact.name="${NAME}"
         
-ADD     ["http://10.20.12.218/jdk-8u121-linux-x64.tar.gz", "/home/bingousr/"]
-ADD     ["http://10.20.12.218/apache-tomcat-8.5.11.tar.gz", "/home/bingousr/"]
+ADD     ["jdk-8u121-linux-x64.tar.gz", "/home/bingousr/"]
+ADD     ["apache-tomcat-8.5.11.tar.gz", "/home/bingousr/"]
 
 MAINTAINER Angelo Gabrieli sistemi@giocodigitale.sps
 
@@ -22,7 +22,7 @@ RUN     groupadd -g 1000 bingousr && \
         
 ADD     ["http://dev-bng-docker01.giocodigitale.sps:8082/artifactory/libs-snapshot-local/com/gvcgroup/arabica/${NAME}/${VERSION}-SNAPSHOT/${NAME}-${VERSION}-${RELEASE_DATE}-1.war", "/home/bingousr/tomcat/webapp"]
 
-COPY some.conf /home/bingousr/conf/
+#COPY some.conf /home/bingousr/conf/
 
 EXPOSE  8080
 
