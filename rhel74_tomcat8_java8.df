@@ -11,7 +11,7 @@ ADD     ["http://10.20.12.218/apache-activemq-5.14.4-bin.tar.gz", "/home/bingous
 MAINTAINER Angelo Gabrieli sistemi@giocodigitale.sps
 
 RUN     groupadd -g 1000 bingousr && \
-        useradd -s /bin/false -d /home/bingousr -g bingousr -u 1000 bingousr
+        useradd -s /bin/false -d /home/bingousr -g bingousr -u 1000 bingousr && \
         tar xf /home/bingousr/apache-tomcat-8.5.11.tar.gz -C /home/bingousr && \
         tar xf /home/bingousr/jdk-8u121-linux-x64.tar.gz -C /home/bingousr && \
         ln -s jdk1.8.0_121/ /home/bingousr/jdk18 && \
@@ -21,6 +21,8 @@ RUN     groupadd -g 1000 bingousr && \
         rm -f /home/javawww/jdk-8u121-linux-x64.tar.gz
         
 ADD     ["http://dev-bng-docker01.giocodigitale.sps:8082/artifactory/libs-snapshot-local/com/gvcgroup/arabica/${NAME}/${VERSION}-SNAPSHOT/${NAME}-${VERSION}-${RELEASE_DATE}-1.war", "/home/bingousr/tomcat/webapp"]
+
+COPY some.conf /home/bingousr/conf/
 
 EXPOSE  8080
 
