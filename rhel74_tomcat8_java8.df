@@ -33,6 +33,6 @@ ENV     TZ="Europe/Rome" \
         JAVA_HOME="/home/bingousr/jdk18" \
         PATH="$PATH:$JAVA_HOME/bin:$HOME/bin"
 
-WORKDIR $HOME
+WORKDIR /home/bingousr
 
 ENTRYPOINT ["/home/bingousr/tomcat/bin/catalina.sh","run"]
