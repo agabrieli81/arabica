@@ -1,5 +1,5 @@
 FROM    registry.access.redhat.com/rhel7/rhel
-LABEL   base.name="RHEL 7.3 with Java/Tomcat" \
+LABEL   base.name="RHEL 7.3 with Java8/Tomcat8" \
         artifact.version="${VERSION}"
         artifact.release="${RELEASE_DATE}"
 MAINTAINER Angelo Gabrieli sistemi@giocodigitale.sps
